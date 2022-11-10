@@ -6,7 +6,7 @@
 /*   By: pvong <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:52:54 by pvong             #+#    #+#             */
-/*   Updated: 2022/10/27 15:26:51 by pvong            ###   ########.fr       */
+/*   Updated: 2022/10/31 15:50:26 by pvong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_get_line(char **str, char **line)
 	int		len;
 	char	*tmp;
 
-	if (*str == 0)
+	if (!str || *str == 0)
 		return (0);
 	if (!ft_strchr(*str, '\n'))
 	{
@@ -99,8 +99,10 @@ char	*get_next_line(int fd)
 	static char	*str[1024];
 	char		*line;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 	{
 		free(buffer);
 		buffer = 0;
