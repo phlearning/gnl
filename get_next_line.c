@@ -6,7 +6,7 @@
 /*   By: pvong <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:22:46 by pvong             #+#    #+#             */
-/*   Updated: 2022/11/11 17:19:44 by pvong            ###   ########.fr       */
+/*   Updated: 2022/11/11 18:01:30 by pvong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*get_next_line(int fd)
 	static char	*str = NULL;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
 	{
 		free(str);
 		str = 0;
